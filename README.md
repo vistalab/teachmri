@@ -7,3 +7,5 @@ The critical directory is **tutorials**, which contains some livescripts (mlx_xx
 We suggest that you use 'git clone' to download this repository to your computer.  If you don't have that, notice that you can also download the repository as a zip file from the <>Code tab.
 
 Then, make sure you add the whole download to your Matlab path (addpath(genpath(...)).
+
+NOTE:  This is a first draft of this repository.  It will contine to change substantially during the Winter 2018 quarter, and it probably won't stabilize for a couple of more years.

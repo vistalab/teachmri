@@ -1,47 +1,36 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Class:     Psych 204A
-% Tutorial:  DWI
-% Author:    Dougherty
-% Date:      2010.10.31
-% Duration:  45 minutes
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Purpose: 
-%
-% This tutorial illustrates the nature of the data
-% acquired in a diffusion tensor imaging scan.  The new statistical issues
-% involved in analyzing these data, and the computational methods that are
-% available for interpreting these data, are also introduced.
-%
-% Copyright: Stanford University, Robert F. Dougherty
-%
-% Edited, BW, 20110216
-
-%% The effect of diffusion on the MR signal
-% Let's create an image that represents a vial of water in a 3 Tesla
-% magnetic field. The image intensity at each point represents the 
-% local magnetic field strength, expressed as the Larmor frequency
-% difference between that region and the frequency at 3 T.
-% First let's define some constants
-
+%% Impact of diffusion on the MR signal
+% This tutorial illustrates the impact of diffusion on the signal from a single 
+% voxel.  This is the effect we measure in a diffusion weighted imaging scan. 
+% The new statistical issues involved in analyzing these data, and the computational 
+% methods that are available for interpreting these data, are also introduced.
+% 
+% * Class:     Psych 204A
+% * Tutorial:  DWI
+% * Author:    Dougherty
+% * Date:      2010.10.31
+% * Duration:  45 minutes
+% * Copyright: Stanford University, Robert F. Dougherty
+% 
+% Checked and edited
+% 
+% *  BW, 20110216
+%% Constants
+% Let's create an image that represents a vial of water in a 3 Tesla magnetic 
+% field. The image intensity at each point represents the local magnetic field 
+% strength, expressed as the Larmor frequency difference between that region and 
+% the frequency at 3 T. First let's define some constants
+%%
 B0 = 3.0;                     % Magnetic field strength (Tesla)
 gyromagneticRatio = 42.58e+6; % Gyromagnetic constant for hydrogen (Hz / Tesla)
 
 % The Larmour frequency (in Hz) of Hydrogen spins in this magnet is:
 spinFreq = gyromagneticRatio*B0 %#ok<NASGU>
-
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ***** Question 1: ***** %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% a. What is the Larmour frequency of Hydrogen spins at 1.5T? 
-% b. What is it at 7T?
-%
-
-%%
+%% Question 1
+% * What is the Larmour frequency of Hydrogen spins at 1.5T? 
+% * What is it at 7T?
+% 
 % Let's define the size of our simulated voxel, in micrometers:
+%%
 voxelSize = 40.0;
 % Quantize space into 100 regions and use meshgrid to lay these out
 % into 2d arrays that be used to compute a 100x100 image:
@@ -59,7 +48,6 @@ gy = 0.0;
 % (micrometers * T/um + micrometers * T/um) leaves us with T. We scale this
 % by 1e6 to express the resulting image in micro-Teslas
 relativeFieldStrengthImg = (X*gx + Y*gy) * 1e6;
-
 %%
 figure(1);
 ih = imagesc(x,y,relativeFieldStrengthImg);
@@ -97,26 +85,18 @@ format short
 % reference), so we can leave that last term off and compute relative
 % frequencies:
 relativeSpinFreq = (spinXLocs(:)*gx+spinYLocs(:)*gy)*gyromagneticRatio
-
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ***** Question 2: ***** %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% a. Speculate on why the relative spin frequency is the most important
-%    value to calculate here.
-% b. Do you think the B0 field strength will play a role in the calcualtion
-%    of the diffusion tensor?
-%
-
+%% Question 2
+% * Speculate on why the relative spin frequency is the most important value 
+% to calculate here.
+% * Do you think the B0 field strength will play a role in the calcualtion of 
+% the diffusion tensor?
 %% Display the relative frequencies, in Hz:
-% When we first apply an RF pulse, all the spins will all precess in phase.
-% If they are all experienceing the same magnetic field, they will remain
-% in phase. However, if some spins experience a different local field, they
-% will become out of phase with the others. Let's show this with a movie,
-% where the phase will be represented with color.
-% Our timestep is 1 millisecond
-
+% When we first apply an RF pulse, all the spins will all precess in phase. 
+% If they are all experienceing the same magnetic field, they will remain in phase. 
+% However, if some spins experience a different local field, they will become 
+% out of phase with the others. Let's show this with a movie, where the phase 
+% will be represented with color. Our timestep is 1 millisecond
+%%
 for(ii=1:numel(spinXLocs(:)))
     text(spinXLocs(ii),spinYLocs(ii),sprintf('%0.fHz',relativeSpinFreq(ii)),'color','blue','HorizontalAlignment','center','VerticalAlignment','top');
 end
@@ -158,5 +138,4 @@ for(ti=1:nTimeSteps)
     set(get(ah,'Title'),'String',sprintf('elapsed time: %5.1f ms',timeStep*t*1000));
     pause(.1);
 end
-
 %% End

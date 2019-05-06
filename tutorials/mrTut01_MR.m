@@ -332,9 +332,9 @@ end
 % a consequence of the fact that the individual dipoles each have their own local 
 % magnetic field and the synchrony soon dissipate.
 % 
-% Suppose  we have a large sample of dipoles that are spinning together in 
-% perfect phase.  We can specify their orientation as an angle in this plane, 
-% theta.  Let's assume they all share a common angle
+% Suppose  we have a large sample of dipoles that are spinning together in
+% perfect phase.  We can specify their orientation as an angle in this
+% plane, theta.  Let's assume they all share a common angle
 %%
 nSamples = 10000;
 theta = zeros(nSamples,1);
@@ -355,9 +355,10 @@ grid on; xlabel('x'), ylabel('y')
 averagePosition = sum(spins)/nSamples;         % Type v so you know what it is
 netMagnetization = sqrt(averagePosition(1)^2 + averagePosition(2)^2)
 %% 
-% Now, suppose that spins are precessing at slightly different rates.  So 
-% after a few moments in time they do not fall at exactly the same angle. We can 
-% express this by creating a new vector theta that has some variability.
+% Now, suppose that spins are precessing at slightly different rates.  So
+% after a few moments in time they do not fall at exactly the same angle.
+% We can express this by creating a new vector theta that has some
+% variability.
 %%
 theta = rand(nSamples,1)*0.5;       % Uniform random number generator
 
@@ -398,14 +399,14 @@ averagePosition = sum(spins);
 netMagnetization = sqrt(averagePosition(1)^2 + averagePosition(2)^2)/nSamples;
 fprintf('Net magnetization (180deg) %f\n',netMagnetization);
 %% 
-% *Bonus:* What do you expect the net magnetization to be when the spins 
-% are randomly distributed over 2$<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>?</mi></math>$ 
-% radians?
+% *Bonus:* What do you expect the net magnetization to be when the spins
+% are randomly distributed over 2$<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>?</mi></math>$ radians?
 % 
-% In a typical experiment, the phases become less coherent (i.e., spread 
-% more) over time, decreasing the net transverse magnetization.  The loss of signal 
-% from this *spin-dephasing* mechanism follows an exponential time constant.   
-% The rate depends on the spins' environment, say within gray or white matter.
+% In a typical experiment, the phases become less coherent (i.e., spread
+% more) over time, decreasing the net transverse magnetization.  The loss
+% of signal from this *spin-dephasing* mechanism follows an exponential
+% time constant. The rate depends on the spins' environment, say within
+% gray or white matter.
 %%
 t = (0.01:0.01:0.3);% Time in secs
 T2(1) = 0.08;       % T2 for white matter at 3T
@@ -438,15 +439,20 @@ plot(t,abs(MzG - MzW),'b-')
 xlabel('Time (s)'); ylabel('Transverse magnetization difference(T2)'); 
 grid on
 %% Question 7
-% # Suppose you wanted to measure brain structure, and you were particularly 
-% interested in gray/white differences.  Based on the T1 and T2 curves we have 
-% drawn, would you choose to distinguish these two tissues using T1 or T2? 
+% # Suppose you wanted to measure brain structure, and you were
+% particularly interested in gray/white differences.  Based on the T1 and
+% T2 curves we have drawn, would you choose to distinguish these two
+% tissues using T1 or T2?
 % 
 % Comments
 % 
-% # The T2 difference is so short that measurement of the T2 signal would be 
-% a problem were it not for the invention of an important measurement method called 
-% 'Spin Echo'.  We will begin the next tutorial by explaining that idea.
-% # In fact, there are many essential imaging ideas that we have not yet explored.  
-% For example, how can we measure T1 and T2 separately? Perhaps most importantly, 
-% how can we form an image? These are the topics we will take up in the next tutorial.
+% # The T2 difference is so short that measurement of the T2 signal would
+% be a problem were it not for the invention of an important measurement
+% method called 'Spin Echo'.  We will begin the next tutorial by explaining
+% that idea.
+% # In fact, there are many essential imaging ideas that we have not yet
+% explored. For example, how can we measure T1 and T2 separately? Perhaps
+% most importantly, how can we form an image? These are the topics we will
+% take up in the next tutorial.
+
+%% END

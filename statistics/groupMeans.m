@@ -12,7 +12,7 @@ Y = randn(nSamples,1) + delta; % Normal delta mean
 
 %%  Show the individual sample plots
 
-vcNewGraphWin([],'wide');
+mrvNewGraphWin([],'wide');
 
 subplot(1,2,1)
 samples = randi(numel(X),[min(numel(X),500),1]);   % Limit to 500 samples

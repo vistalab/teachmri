@@ -10,6 +10,53 @@ idx = [1,2];                   % Two groups
 X = randn(nSamples,1);         % Normal, 0 mean
 Y = randn(nSamples,1) + delta; % Normal delta mean
 
+%% Typical plots of group means and SE
+
+mnX = mean(X); mnY = mean(Y); data = [mnX; mnY];
+seX = std(X)/sqrt(numel(X)); seY = std(Y)/sqrt(numel(Y));
+errhigh = [seX,seY]; 
+errlow = -1*errhigh;
+
+%%
+mrvNewGraphWin();
+histX = histogram(X(:));
+xlabel('Measurement value');
+ylabel('Number of subjects');
+title(sprintf('N = %d',numel(X)));
+set(gca,'xlim',[-5 5]);
+legend('Population distribution')
+
+%% One dimensional version
+mrvNewGraphWin([],'wide');
+
+subplot(1,2,1)
+histX = histogram(X(:)); 
+hold on;
+histY = histogram(Y(:));
+legend('Control','Test');
+title(sprintf('N = %d',numel(X)));
+
+%% 
+subplot(1,2,2);
+b = bar(idx,data); 
+b.BarWidth = 0.4;
+b.FaceColor ='flat';
+b.CData(2,:) = [.6 0.3 .2];
+b.CData(1,:) = [0 .5 .8];
+
+hold on;
+er = errorbar(idx,data,errhigh,errlow);
+er.Color = [0.5 0.5 0.5];                            
+er.LineStyle = 'none';
+er.LineWidth = 3;
+set(gca,'xlim',[0 3],'xtick',[1 2]);
+str = sprintf('Test (u = %.1f)',delta);
+
+set(gca,'xticklabel',{'Control (u = 0)';str});
+ylabel('Measurement value');
+grid on
+
+
 %%  Show the individual sample plots
 
 mrvNewGraphWin([],'wide');
@@ -24,12 +71,7 @@ set(gca,'xticklabel',{'Control (u = 0)';str});
 ylabel('Measurement value'); grid on
 title(sprintf('N = %d',numel(X)));
 
-%% Typical plots of group means and SE
 
-mnX = mean(X); mnY = mean(Y); data = [mnX; mnY];
-seX = std(X)/sqrt(numel(X)); seY = std(Y)/sqrt(numel(Y));
-errhigh = [seX,seY]; 
-errlow = -1*errhigh;
 
 %% Typical clinical plot of the result
 

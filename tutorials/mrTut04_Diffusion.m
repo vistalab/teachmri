@@ -40,7 +40,7 @@ selfDiffusionOfWater(37,P)
 % Let's plot D for a biologically meaningful range of temperatures
 T = [25:40];
 D = selfDiffusionOfWater(T,P);
-figure(1);
+mrvNewGraphWin;
 plot(T, D, 'k');
 xlabel('Temperature (Centigrade)');
 ylabel('Self-diffusion of water (\mum^2/ms)')

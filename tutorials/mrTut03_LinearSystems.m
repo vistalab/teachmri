@@ -139,7 +139,7 @@ RT = 1;         % Repetition time - sample every second
 nT = p(7);   %Number of time steps
 t  = 0:nT;   %Individual time samples of the HRF
 
-figure(1), clf
+mrvNewGraphWin, clf
 plot(t,hrf)
 xlabel('Time (sec)')
 ylabel('HRF level')
@@ -161,7 +161,7 @@ time1=1; stim1=zeros(1,nT); stim1(time1)=1;
 time2=8; stim2=zeros(1,nT); stim2(time2)=1;
 %% Plot the stimulus and output of a linear system with the SPM HRF
 %%
-figure(1), clf
+mrvNewGraphWin, clf
 subplot(2,2,1); plot((1:nT),zeros(1,nT)); hold; 
 plot([ time1 time1 time1], [0 .5 1]); hold
 axis([0 30 -0.5 1.5])

@@ -106,7 +106,7 @@ t = (0:.005:1)*(3*max(T1)); % Time samples in secs
 % The function rfSignal produces the RF signal that we will measure given a
 % particular time constant and Larmor frequency.
 signal = rfSignal(T1(1),Mo,t,larmorFreq(1));
-figure(1); clf
+mrvNewGraphWin; clf
 subplot(1,2,1), plot(t,signal); grid on
 xlabel('Time (s)'); ylabel('RF signal'); title('Beaker signal');
 %% 
@@ -290,7 +290,7 @@ pulseFreq = 25;
 
 % Now, create a sinusoid RF pulse at that frequency.
 rfPulse(pulseStart:pulseStop) = sin(2*pi*pulseFreq*pulseT);
-figure(1); clf;
+mrvNewGraphWin; clf;
 subplot(1,2,1), plot(t,rfPulse); xlabel('Time'); ylabel('RF signal'); 
 title('RF pulse'); grid on
 
@@ -367,7 +367,7 @@ Mo = 1;
 
 rate = [0,0,0,0];
 spinDir = [10,0; 10,0; 10,0; 10,0];
-figure(1), clf
+mrvNewGraphWin, clf
 phaseEncode(rate,spinDir,1,'Gradient-X');
 %% 
 % Suppose we apply a gradient across the x-axis.  In the presence of this 
@@ -379,7 +379,7 @@ phaseEncode(rate,spinDir,1,'Gradient-X');
 %%
 f = [larmorFreq(1),larmorFreq(1),larmorFreq(2), larmorFreq(2)];
 p = [ph(1),ph(1),ph(1),ph(1)];
-figure(1), clf; 
+mrvNewGraphWin, clf; 
 signal = plotRF(f,p,t,T1,Mo,'Gradient-X');
 
 % Total signal
@@ -403,7 +403,7 @@ title('Total RF Signal')
 
 rate = [pi/8 pi/8 pi/16 pi/16];
 spinDir = [10,0; 10,0; 10,0; 10,0];
-figure(1), clf
+mrvNewGraphWin, clf
 phaseEncode(rate,spinDir,15,'Gradient-Y');
 %% 
 % Next, we switch off  Gy and turn on Gx.  As before we will measure the 
@@ -414,7 +414,7 @@ phaseEncode(rate,spinDir,15,'Gradient-Y');
 
 f = [larmorFreq(1),larmorFreq(1),larmorFreq(2), larmorFreq(2)];
 p = [ph(1),ph(2),ph(1),ph(2)];
-figure(1), clf; signal = plotRF(f,p,t,T1,Mo,'Gradient-X');
+mrvNewGraphWin, clf; signal = plotRF(f,p,t,T1,Mo,'Gradient-X');
 
 % Total signal
 clf; subplot(1,2,1)
@@ -442,3 +442,5 @@ title('Total RF Signal')
 % of the spins along the y-dimension. Hence, this dimension is called the phase-encode 
 % dimension.  People keep track of these two dimensions because the phase-encode 
 % direction is subject to more measurement error than the frequency encode direction.
+%
+%% END

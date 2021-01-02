@@ -74,6 +74,7 @@ dirADC = diag(adc)*bvecs;
  
 % Using the diffusion tensor to transform the unit sphere coords
 % produces an ellipsoid, even if there are non-zero off-diagonals in D.
+% clear e
 e{1} = u*D;
 
 % We use D to predict ADC values for each direction.

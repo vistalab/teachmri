@@ -1,11 +1,15 @@
-# teachmri
+# An introduction to human neuroimaging using magnetic resonance (Psych 204A)
 
-The repository contains a Matlab tutorial scripts for teaching MRI principles in Stanford's Psych 204A (An introduction to human neuroimaging using magnetic resonance).  It contains some simple utility functions, as well.
+These are Matlab tutorial live scripts we use for homeworks and experimenting with MRI principles. 
 
-The critical directory is **tutorials**, which contains some livescripts (mlx_xxx) and basic matlab tutorial scripts (mrTutxxx).
+The key directory for Psych 204A is **tutorials**. That directory contains the main tutorials as LiveScripts (tls_mri*.mlx) as well some simple utility functions.
 
-We suggest that you use 'git clone' to download this repository to your computer.  If you don't have that, notice that you can also download the repository as a zip file from the <>Code tab.
+We suggest that you use 'git clone' to download this repository to your computer.  If you clone the directory, you can get updates with "git pull" in the future.  It is possible to download the repository as a zip file from the <>Code tab, but that is not preferred.
 
-Then, make sure you add the whole download to your Matlab path (addpath(genpath(...)).
+To run, please make sure you add the whole download to your Matlab path.  You can do this by changing into the main directory and running
 
-NOTE:  This is a first draft of this repository.  It will contine to change substantially during the Winter 2018 quarter, and it probably won't stabilize for a couple of more years.
+    addpath(genpath(pwd)).
+
+This repository will contine to change over time.  If you enjoy programming and want to work on some tutorials with me, let me know!
+
+Brian

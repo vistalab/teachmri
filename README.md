@@ -1,4 +1,4 @@
-# Psych 204A (An introduction to human neuroimaging using magnetic resonance)
+# An introduction to human neuroimaging using magnetic resonance (Psych 204A)
 
 These are Matlab tutorial live scripts we use for homeworks and experimenting with MRI principles. 
 

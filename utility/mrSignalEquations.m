@@ -1,14 +1,41 @@
 function val = mrSignalEquations(sequence,varargin)
-% From sequence and tissue parameters and return signal values
+% From sequence and tissue parameters and calculate signal values
 %
-% References:
-% The Hornak book has most of them on a single page.
+% Brief
+%    Implementation of basic signal equations.If TE is a vector of echo
+%    times, then the return will be a set of values for each echo time.
+%    Otherwise, the return value will be the signal.  The PD is not
+%    accounted for so all values are relative to an mean magnetization of
+%    1.
 %
-%   https://www.cis.rit.edu/htbooks/mri/chap-10/chap-10.htm#:~:text=Gradient%20Recalled%20Echo,detection%20circuitry%20on%20the%20imager.
-%   https://mriquestions.com/spoiled-gre-parameters.html
+%   References:
+%      The Hornak book has most of them on a single page.
+%
+%      https://www.cis.rit.edu/htbooks/mri/chap-10/chap-10.htm#:~:text=Gradient%20Recalled%20Echo,detection%20circuitry%20on%20the%20imager.
+%      https://mriquestions.com/spoiled-gre-parameters.html
+%
+% Inputs:
+%   sequence - Pulse sequence name. Options are one of
+%     {'inversion recovery', inversion recovery 3', 'spin echo', 'gradient echo','spgr'}
+%   
+% Optional key/val pairs
+%   These are the pulse sequence parameters
+%
+%    T1, T2, T2star, TI, TR, TE, FA
+%
+% Return
+%    val - Signal values
+%   
+%
+% See also
+%   tls_mriSignalEquations.mlx
 %
 
-%% Dig out the parameters
+%% Read the parameters
+%
+% The parameters necessary for the sequence should be included
+% The tissue parameters should be appropriate for, well, the tissue you
+% want
 
 % Lower case, eliminate spaces
 varargin = mrvParamFormat(varargin);

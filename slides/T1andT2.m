@@ -23,14 +23,20 @@ set(l,'FontSize',20)
 % https://www.ncbi.nlm.nih.gov/pubmed/10232510
 
 % Gray matter
-% Average T2 values measured for gray matter and white matter were 80 and 110 msec, respectively. 
+%
+
+% Source:  Quantitative Relaxometry Metrics for Brain Metastases Compared to Normal Tissues: A Pilot MR Fingerprinting Study
+% Average T2 values measured for gray matter and white matter were 110 and 80 msec, respectively. 
+
 % Average T1 values measured for gray matter and white matter were 1331 and 832 msec, 
 
 PD0 = 0.5;
 PD1 = 0.7;
 PD2 = 1;
-grayT2  = 0.08;
-whiteT2 = 0.11;
+
+% Source:  Quantitative Relaxometry Metrics for Brain Metastases Compared to Normal Tissues: A Pilot MR Fingerprinting Study
+grayT2  = 0.108;
+whiteT2 = 0.078;
 
 t = 0:0.001:0.5;
 
@@ -53,3 +59,5 @@ xlabel('Time (s)');
 ylabel('Relative signal size');
 l = legend({'Gray','White'});
 set(l,'FontSize',20)
+
+%%

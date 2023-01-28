@@ -8,6 +8,7 @@ x = x - 0.5;
 
 %% Cumulate cosinusoids
 fName = 'impulseFromHarmonics.gif';
+
 nFrames = 128;
 Z = cos(2*pi*x);
 plot(x,Z)
@@ -16,37 +17,49 @@ set(gca,'xlim',[-0.5 0.5],'ylim',[-1 1]);
 % set(gca,'nextplot','replacechildren','visible','off')
 set(gca,'nextplot','replacechildren')
 f = getframe;
+
+
+
 [im,map] = rgb2ind(f.cdata,256,'nodither');
 im(1,1,1,nFrames) = 0;
-%%
+%% Show sum of
+
+v = VideoWriter('impulse','MPEG-4');
+v.FrameRate = 5;
+open(v);
+
+mrvNewGraphWin;
 Z = zeros(1,nFrames);
 for k = 1:nFrames
     Z = (Z + cos(2*pi*k*x)); 
-    plot(x,Z/k)
-    f = getframe;
-    im(:,:,1,k) = rgb2ind(f.cdata,map,'nodither');
+    plot(x,Z/k); 
+    set(gca,'ylim',[-0.2 1]); 
+    pause(0.1);  % Slow down for Matlab graphics to do its thing
+    frame = getframe(gcf);
+    writeVideo(v,frame);
 end
-imwrite(im,map,fName,'DelayTime',0,'LoopCount',inf) %g443800
-%%
-fName = 'summingHarmonics.gif';
-nFrames = 128;
-figure;
-Z = cos(2*pi*x);
-plot(x,Z)
+close(v);
 
-set(gca,'xlim',[-0.5 0.5],'ylim',[-1 1]);
-set(gca,'nextplot','replacechildren')
-f = getframe;
-
-[im,map] = rgb2ind(f.cdata,256,'nodither');
-im(1,1,1,nFrames) = 0;
+% imwrite(im,map,fName,'DelayTime',0,'LoopCount',inf) %g443800
 %%
-figure(1); clf
+
+v = VideoWriter('sumHarmonics','MPEG-4');
+v.FrameRate = 1;
+open(v);
+
+mrvNewGraphWin;
 z0 = zeros(1,nFrames);
-for k = 1:16
+for k = 1:8
     Z = cos(2*pi*k*x); 
-    if ( k== 1 || ~mod(k,4)),hold on; plot(x,Z,'linewidth',2); plot(x,z0,'linewidth',1); saveas(gcf,sprintf('tmp%.0d',k),'jpg'); end
+    if ( k== 1 || ~mod(k,2)),hold on; 
+        plot(x,Z,'linewidth',2); plot(x,z0,'k--','linewidth',1);
+        pause(1);
+        frame = getframe(gcf);
+        writeVideo(v,frame);
+    end
 end
+close(v);
+
 % imwrite(im,map,fName,'DelayTime',0,'LoopCount',inf) %g443800
 %%
 % movie(F)
@@ -55,6 +68,7 @@ Z = peaks;
 surf(Z)
 axis tight
 set(gca,'nextplot','replacechildren','visible','off')
+
 f = getframe;
 [im,map] = rgb2ind(f.cdata,256,'nodither');
 im(1,1,1,20) = 0;
@@ -73,7 +87,7 @@ myVideo.FrameRate = 15;  % Default 30
 myVideo.Quality = 50;    % Default 75
 
 open(myVideo)
-writeVideo(myVideo, F);
+writeVideo(myVideo, f);
 close(myVideo);
 
 %% http://www.mathworks.com/help/techdoc/ref/videowriter.writevideo.html

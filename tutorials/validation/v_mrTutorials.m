@@ -1,19 +1,18 @@
-%% Execute the key Psych 204A tutorials
+%% Execute the Psych 204A tutorials
 % 
-%  Showing that they still run!!!
 %
 % Wandell, 2019
 
 %% Will add more validation tests within later
 
-mrTut01_MR
+chdir(fullfile(mrTeachRootPath,'tutorials'));
+files = dir('tls_*.mlx');
+for ii=7:numel(files)
+    fprintf('Validating %s ',files(ii).name);
+    run(files(ii).name);
+    fprintf('\n');
+end
 
-mrTut02_Imaging
-
-mrTut03_LinearSystems
-
-mrTut04_Diffusion
-
-mrTut05_Visualization
+fprintf('Done\n');
 
 %% END

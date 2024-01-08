@@ -1,16 +1,20 @@
 %% Execute the Psych 204A tutorials
 % 
-% These are all live scripts now.
+% The tutorials are all live scripts now.
 %
-% Maybe put this in ieValidate?
+% This is not really a validation.  All it does is check that the
+% scripts run.  Perhaps there should be some ieValidate()
+% implementation.  But we don't have that yet.
 %
-% Wandell, 2019
+%
+% See also
+%
 
-%% Will add more validation tests within later
+%% To add more validation tests 
 
 chdir(fullfile(mrTeachRootPath,'tutorials'));
 files = dir('t_*.mlx');
-for ii=7:numel(files)
+for ii=1:numel(files)
     fprintf('Validating %s ',files(ii).name);
     run(files(ii).name);
     fprintf('\n');

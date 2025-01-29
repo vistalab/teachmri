@@ -14,3 +14,17 @@ end
 xlabel('t (sec)')
 ylabel('S(t) displaced for clarity')
 legend({'cos','sin'})
+
+%% Make the 2d basis images
+
+sz = 128;
+[x, y] = meshgrid(1:sz, 1:sz);
+f1 = 7; f2 = 7;
+% Calculate the image data. Note the use of meshgrid's x and y
+img = sin(2 * pi * (f1 * x / sz + f2 * y / sz));
+
+mrvNewGraphWin;
+imagesc(img);
+colormap(gray);
+axis image
+axis off
